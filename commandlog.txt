@@ -5,41 +5,32 @@
 # initialize interactive compute session
 salloc -N 2 -n 4 -A open -t 2:00:00
 
-# navigate to scratch
-cd ~/scratch
+# navigate to $HOME
+cd
 
 # download files
-git clone https://github.com/ecetter/optjobs.git
-cd optjobs
+git clone https://github.com/ecetter/intro2bridges2.git
+cd intro2bridges2
 
 # show task distribution and hostnames
 bash checknodefile.sh
 scontrol show hostname
 
 # load software from software stack
-module load anaconda/2023 intel
+module load anaconda3
 
 # create a conda environment for hands-on activities
-conda create -y -n optjobs_env gdb numpy mpi4py
+conda create -y -n pi_env numpy mpi4py
 
 # activate environment
-conda activate optjobs_env
+conda activate pi_env
+python mpi_hello.py
 
-# debug example
-cd debug_gdb
-make
-./factorial
-
-# monitoring jobs
-squeue -u $(whoami)
-export SQUEUE_FORMAT="%.9i %9P %35j %.8u %.2t %.12M %.12L %.5C %.7m %.4D %R"
-scontrol show job <jobid>
-
-# monitor a job example
-cd ../pi_example
+# submit and monitor a job
+cd pi_example
 sbatch submit-pi_serial.slurm
 sbatch submit-pi_parallel.slurm
 squeue -u $(whoami)
-ssh <comp-node-id>
-top -Hu $(whoami)
-ps -aux | grep $(whoami)
+scontrol show job <jobid>
+export SQUEUE_FORMAT="%.9i %9P %35j %.8u %.2t %.12M %.12L %.5C %.7m %.4D %R"
+squeue -u $(whoami)
