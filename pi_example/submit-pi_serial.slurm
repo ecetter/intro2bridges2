@@ -12,4 +12,7 @@
 
 module load python numpy
 
+echo "Job ID is $SLURM_JOB_ID."
+echo "Executing on the machine: " $(hostname)
+
 python pi_serial.py > out/pi_serial.out
