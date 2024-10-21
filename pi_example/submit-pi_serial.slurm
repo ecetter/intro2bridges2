@@ -10,7 +10,6 @@
 #SBATCH --output=out/slurm-%x.out
 #SBATCH --error=out/slurm-%x.err
 
-module load anaconda3
-conda activate pi_env
+module load python numpy
 
 python pi_serial.py > out/pi_serial.out

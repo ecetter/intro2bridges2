@@ -17,19 +17,11 @@ bash checknodefile.sh
 scontrol show hostname
 
 # load software from software stack
-module load anaconda3
-
-# create a conda environment for hands-on activities
-conda create -y -n pi_env numpy mpi4py
-
-# activate environment
-conda activate pi_env
-python mpi_hello.py
+module load python numpy
 
 # submit and monitor a job
 cd pi_example
 sbatch submit-pi_serial.slurm
-sbatch submit-pi_parallel.slurm
 squeue -u $(whoami)
 scontrol show job <jobid>
 export SQUEUE_FORMAT="%.9i %9P %35j %.8u %.2t %.12M %.12L %.5C %.7m %.4D %R"
