@@ -3,7 +3,7 @@
 #
 
 # initialize interactive compute session
-salloc -N 2 -n 4 -A open -t 2:00:00
+salloc -N 1 -n 4 --mem 4GB -A cis240128p –p RM-shared -t 1:00:00
 
 # navigate to $HOME
 cd
@@ -11,10 +11,6 @@ cd
 # download files
 git clone https://github.com/ecetter/intro2bridges2.git
 cd intro2bridges2
-
-# show task distribution and hostnames
-bash checknodefile.sh
-scontrol show hostname
 
 # load software from software stack
 module load python numpy

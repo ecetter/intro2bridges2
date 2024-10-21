@@ -2,7 +2,7 @@
 
 #SBATCH --job-name=pi_serial
 #SBATCH --account=cis240128p
-#SBATCH --partition=RM
+#SBATCH --partition=RM-shared
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --mem=1G
