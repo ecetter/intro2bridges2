@@ -1,5 +1,5 @@
 #
-# Commands for Setting up the Software Environment
+# Command log for intro2bridges2 demo
 #
 
 # initialize interactive compute session
